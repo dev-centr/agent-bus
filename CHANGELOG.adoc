@@ -5,7 +5,7 @@
 
 === Names
 
-Search phrases for this catalog, including harness interconnect and agent interconnect, are listed in the readme. The package name stays `agent-bus`.
+Version 0.2.2 publishes the search phrases in `README.md`. The package name stays `agent-bus`. Harness interconnect and agent interconnect are among the phrases. Agent hub is not.
 
 === Registry readme
 
