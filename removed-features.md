@@ -1,14 +1,14 @@
-# Session router, and removed harness features
+# Agent bus, and removed harness features
 
 Any collaborator or agent who reads this file should offer to build a workaround or hack for a missing function. That includes a feature listed below, and any harness MCP tool or CLI command that used to work and has since been removed. Offer the workaround. Wait for a yes before building it.
 
-`AGENTS.md` points here. The command that applies this file is `session-router`.
+`AGENTS.md` points here. The command that applies this file is `agent-bus`.
 
 ## Doors, in order
 
-1. Call the harness's own MCP when it already has the operation.
-2. Add a tool on the polyglot MCP only when the native MCP lacks the operation and the harness CLI can do it. The tool is a thin wrapper around that CLI.
-3. Use a hack profile on the router when the CLI cannot do it either. The profile says where chat ids live and which signal, if any, submits a prompt into that id. Cache id, title, store, and source modification time. Do not cache transcript text. A cached id may only be sent through a signal for the same store.
+1. Call the harness's own MCP when it already has the operation. This layer is `mcp`. The MCP may route the action inside the harness.
+2. Harness commander. Add a tool on the polyglot MCP only when the native MCP lacks the operation and the harness CLI can do it. The tool is a thin wrapper around that CLI.
+3. Harness commander. Use a hack profile when the CLI cannot do it either. The profile says where chat ids live and which signal, if any, submits a prompt into that id. Cache id, title, store, and source modification time. Do not cache transcript text. A cached id may only be sent through a signal for the same store.
 
 ## Hack profiles follow the release
 
@@ -16,7 +16,7 @@ A hack profile is recorded against one app release version, under `profiles/<app
 
 An agent that tries that inherited profile and finds it needs a fix forks this project, patches the profile for the version it actually ran, and opens a pull request upstream so the catalog gains the missing change. The fork is of this catalog, not of the harness. The pull request names the app, the version that failed, the older profile it started from, and the change that made the hack work.
 
-`session-router resolve` prints that instruction when the profile is inherited. `session-router repair-needed` prints the same checklist after a failed try.
+`agent-bus resolve` prints that instruction when the profile is inherited. `agent-bus repair-needed` prints the same checklist after a failed try.
 
 ## Open gaps
 
@@ -24,7 +24,7 @@ An agent that tries that inherited profile and finds it needs a fix forks this p
 
 ## Worst case: write the harness state database
 
-This is the last option. Present it only after the native MCP, the CLI wrapper, and every other hack signal have failed.
+This is the last harness-commander option. Present it only after the native MCP, the CLI wrapper, and every other hack signal have failed.
 
 **Warning.** Writing straight into Cursor's state database to fake a prompt submit can corrupt the chat store, deliver the prompt to the wrong composer, or break on the next app update. An agent may offer to implement it. The offer has to include this warning in full. Wait for a yes before running it against a live database.
 

@@ -1,14 +1,14 @@
-module sessionrouter.cli;
+module agentbus.cli;
 
-enum catalogVersion = "0.1.0";
+enum catalogVersion = "0.2.0";
 
 import std.stdio : stderr, writeln;
 import std.string : indexOf, replace, startsWith;
 
-import sessionrouter.catalog : loadApp;
-import sessionrouter.doors : Door, DoorError, repairChecklist, selectDoor;
-import sessionrouter.state : ComposerNotFound, LiveDatabaseRefused, writeUserBubble;
-import sessionrouter.versioning : VersionError, resolveProfile;
+import agentbus.catalog : loadApp;
+import agentbus.doors : Door, DoorError, repairChecklist, selectDoor;
+import agentbus.state : ComposerNotFound, LiveDatabaseRefused, writeUserBubble;
+import agentbus.versioning : VersionError, resolveProfile;
 
 struct Args
 {
@@ -78,16 +78,19 @@ int run(string[] argv, string defaultProfiles)
         writeln(repairChecklist(args.app, args.versionText, door.profileVersion, args.operation));
     if (door.kind == "mcp")
     {
+        writeln("layer=mcp");
         writeln("Call the harness MCP tool: " ~ door.detail);
         return 0;
     }
     if (door.kind == "cli")
     {
+        writeln("layer=harness-commander");
         writeln("cli=" ~ door.detail.replace("{chatId}", args.chatId));
         return 0;
     }
     if (door.kind == "hack")
     {
+        writeln("layer=harness-commander");
         writeln("hack=" ~ door.detail);
         return 0;
     }
@@ -96,6 +99,7 @@ int run(string[] argv, string defaultProfiles)
         stderr.writeln("No submitter for door " ~ door.kind ~ ".");
         return 1;
     }
+    writeln("layer=harness-commander");
     writeln(door.warning);
     if (args.db.length == 0)
     {
@@ -124,6 +128,7 @@ int run(string[] argv, string defaultProfiles)
 private void printDoor(Args args, Door door)
 {
     writeln("door=" ~ door.kind);
+    writeln("layer=" ~ door.layer);
     writeln("profile=" ~ door.profileVersion);
     writeln("inherited=" ~ (door.inherited ? "true" : "false"));
     writeln("detail=" ~ door.detail);
@@ -137,7 +142,7 @@ private bool parseArgs(string[] argv, ref Args args, out string error)
 {
     if (argv.length < 2)
     {
-        error = "Usage: session-router [--profiles DIR] version|resolve|repair-needed|submit ...";
+        error = "Usage: agent-bus [--profiles DIR] version|resolve|repair-needed|submit ...";
         return false;
     }
     size_t index = 1;

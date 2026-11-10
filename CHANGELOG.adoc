@@ -3,6 +3,14 @@
 
 == 2026-11-10
 
+=== Agent bus
+
+The package name is `agent-bus`. Version 0.2.0 is the first release under that name.
+
+* `layer=mcp` is the harness's own MCP. It may route the action inside the harness.
+* `layer=harness-commander` is every hop outside that MCP pattern: the CLI wrapper, the hack profile, and the warned state-database write.
+* `agent-bus version` prints `0.2.0`.
+
 === D catalog command
 
 Version 0.1.0 is the first registry release. The catalog command is a D program. `dub run --compiler=ldc2` replaces the Python package.

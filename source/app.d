@@ -4,7 +4,7 @@ import std.file : exists, getcwd;
 import std.path : buildPath;
 import std.stdio : stderr;
 
-import sessionrouter.cli : run;
+import agentbus.cli : run;
 
 int main(string[] argv)
 {

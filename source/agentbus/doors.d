@@ -1,8 +1,8 @@
-module sessionrouter.doors;
+module agentbus.doors;
 
 import std.string : format, indexOf;
 
-import sessionrouter.versioning : Profile;
+import agentbus.versioning : Profile;
 
 enum worstCaseWarning =
     "Warning. Writing straight into Cursor's state database to fake a prompt "
@@ -20,6 +20,7 @@ class DoorError : Exception
 struct Door
 {
     string kind;
+    string layer;
     string detail;
     bool inherited;
     string profileVersion;
@@ -41,9 +42,11 @@ Door selectDoor(Profile profile, string operation, bool inherited)
     if (auto mcp = operation in profile.mcp)
     {
         door.kind = "mcp";
+        door.layer = "mcp";
         door.detail = *mcp;
         return door;
     }
+    door.layer = "harness-commander";
     if (auto cli = operation in profile.cli)
     {
         import std.string : join;
@@ -79,7 +82,7 @@ the older profile, and the change that made the hack work."(app, app, failedVers
 
 unittest
 {
-    import sessionrouter.versioning : Profile;
+    import agentbus.versioning : Profile;
 
     Profile profile;
     profile.versionText = "3.29.15";
@@ -89,6 +92,7 @@ unittest
 
     auto worst = selectDoor(profile, "prompt-existing-desktop-chat", false);
     assert(worst.kind == "worst_case");
+    assert(worst.layer == "harness-commander");
     assert(worst.detail == "state-db");
     assert(worst.warning.indexOf("corrupt the chat store") >= 0);
 

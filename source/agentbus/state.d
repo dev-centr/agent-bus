@@ -1,4 +1,4 @@
-module sessionrouter.state;
+module agentbus.state;
 
 import std.array : replace;
 import std.datetime : Clock, UTC;
@@ -8,7 +8,7 @@ import std.uuid : randomUUID;
 
 import d2sqlite3 : Database;
 
-import sessionrouter.doors : worstCaseWarning;
+import agentbus.doors : worstCaseWarning;
 
 class LiveDatabaseRefused : Exception
 {
@@ -120,7 +120,7 @@ unittest
     import std.path : buildPath;
     import std.uuid : randomUUID;
 
-    auto dir = buildPath(tempDir, "session-router-db-" ~ randomUUID.toString());
+    auto dir = buildPath(tempDir, "agent-bus-db-" ~ randomUUID.toString());
     mkdirRecurse(dir);
     scope (exit)
         rmdirRecurse(dir);

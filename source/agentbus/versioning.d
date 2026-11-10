@@ -1,4 +1,4 @@
-module sessionrouter.versioning;
+module agentbus.versioning;
 
 import std.conv : to;
 import std.regex : matchFirst, regex;

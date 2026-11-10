@@ -3,13 +3,13 @@
 
 [.text-center]
 ****
-image:https://img.shields.io/github/license/dev-centr/session-router?style=for-the-badge[License, link=https://github.com/dev-centr/session-router/blob/main/LICENSE]
-image:https://img.shields.io/github/issues/dev-centr/session-router?style=for-the-badge[Issues, link=https://github.com/dev-centr/session-router/issues]
+image:https://img.shields.io/github/license/dev-centr/agent-bus?style=for-the-badge[License, link=https://github.com/dev-centr/agent-bus/blob/main/LICENSE]
+image:https://img.shields.io/github/issues/dev-centr/agent-bus?style=for-the-badge[Issues, link=https://github.com/dev-centr/agent-bus/issues]
 ****
 
-= Session router
+= Agent bus
 
-A small command that picks how to reach a missing harness feature: the harness MCP, then a CLI wrapper, then a hack profile recorded for that app release.
+An agent uses this catalog to drive a harness, including the harness it is already in. The command picks the door for that harness release.
 
 People wiring an agent to an existing chat, or recording what to do when a studio removes a command, use this catalog instead of inventing a one-off each time.
 
@@ -21,7 +21,7 @@ From the registry:
 
 [source,shell]
 ----
-dub fetch session-router
+dub fetch agent-bus
 ----
 
 From a checkout, the command is a Dub executable. If DMD is not on `PATH`, pass `--compiler=ldc2`.
@@ -40,7 +40,9 @@ Resolve the door for a Cursor release. A version that has no profile uses the ne
 dub run --compiler=ldc2 -- resolve --app cursor --version 3.29.15 --operation prompt-existing-desktop-chat
 ----
 
-Resume of a CLI session stops at the CLI door:
+`layer=mcp` means the harness's own MCP carries the action, and that MCP may route it inside the harness. `layer=harness-commander` means the hop leaves that MCP pattern: a CLI wrapper, a hack profile, or the warned state-database write.
+
+Resume of a CLI session is a harness-commander hop:
 
 [source,shell]
 ----

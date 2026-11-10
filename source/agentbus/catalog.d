@@ -1,11 +1,11 @@
-module sessionrouter.catalog;
+module agentbus.catalog;
 
 import std.algorithm : sort;
 import std.file : dirEntries, exists, isDir, readText, SpanMode;
 import std.json : JSONType, JSONValue, parseJSON;
 import std.path : buildPath;
 
-import sessionrouter.versioning : Profile, VersionError;
+import agentbus.versioning : Profile, VersionError;
 
 Profile[] loadApp(string root, string app)
 {
@@ -71,7 +71,7 @@ unittest
     import std.path : buildPath;
     import std.uuid : randomUUID;
 
-    auto root = buildPath(tempDir, "session-router-profiles-" ~ randomUUID.toString());
+    auto root = buildPath(tempDir, "agent-bus-profiles-" ~ randomUUID.toString());
     mkdirRecurse(buildPath(root, "cursor"));
     scope (exit)
         rmdirRecurse(root);

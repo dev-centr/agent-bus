@@ -1,4 +1,4 @@
-module sessionrouter.cache;
+module agentbus.cache;
 
 import std.file : exists, mkdirRecurse, readText, write;
 import std.string : indexOf;
@@ -100,7 +100,7 @@ unittest
     import std.path : buildPath;
     import std.uuid : randomUUID;
 
-    auto dir = buildPath(tempDir, "session-router-cache-" ~ randomUUID.toString());
+    auto dir = buildPath(tempDir, "agent-bus-cache-" ~ randomUUID.toString());
     scope (exit)
         rmdirRecurse(dir);
     auto cache = IndexCache.open(buildPath(dir, "index.json"));
