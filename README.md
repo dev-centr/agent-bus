@@ -13,7 +13,7 @@ People wiring an agent to an existing chat, or recording what to do when a studi
 
 ## Names
 
-The name is **agent-bus**. The same catalog is what these phrases are looking for: harness interconnect, agent interconnect, agentic interconnect, harness router, harness manager, harness talker, agent hub, agent commander, and session-router (the first published name).
+The name is **agent-bus**. The same catalog is what these phrases are looking for: harness interconnect, agent interconnect, agentic interconnect, harness router, harness manager, harness talker, agent commander, and session-router (the first published name).
 
 **harness-commander** is the layer for hops outside the harness MCP. It is not a second package.
 
