@@ -5,7 +5,7 @@
 
 === Registry readme
 
-code.dlang.org reads root `README.md`. The AsciiDoc file stays beside it.
+Version 0.2.1 publishes the root `README.md`. code.dlang.org reads that file. The AsciiDoc file stays beside it.
 
 === Agent bus
 
