@@ -3,6 +3,10 @@
 
 == 2026-11-10
 
+=== Registry readme
+
+code.dlang.org reads root `README.md`. The AsciiDoc file stays beside it.
+
 === Agent bus
 
 The package name is `agent-bus`. Version 0.2.0 is the first release under that name.
