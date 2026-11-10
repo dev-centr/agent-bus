@@ -5,7 +5,9 @@
 
 === D catalog command
 
-The catalog command is a D program. `dub run --compiler=ldc2` replaces the Python package.
+Version 0.1.0 is the first registry release. The catalog command is a D program. `dub run --compiler=ldc2` replaces the Python package.
+
+* `session-router version` prints `0.1.0`. `--version` stays the harness release being routed.
 
 * Profiles, version inheritance, and the state-database refusal stay the same.
 * Windows builds copy the SQLite library shipped with `d2sqlite3`.

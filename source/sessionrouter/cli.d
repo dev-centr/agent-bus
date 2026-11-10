@@ -1,5 +1,7 @@
 module sessionrouter.cli;
 
+enum catalogVersion = "0.1.0";
+
 import std.stdio : stderr, writeln;
 import std.string : indexOf, replace, startsWith;
 
@@ -34,6 +36,11 @@ int run(string[] argv, string defaultProfiles)
     }
     if (args.profiles.length == 0)
         args.profiles = defaultProfiles;
+    if (args.command == "version")
+    {
+        writeln(catalogVersion);
+        return 0;
+    }
     if (args.command == "repair-needed")
     {
         writeln(repairChecklist(args.app, args.versionText, args.profileVersion, args.operation));
@@ -130,7 +137,7 @@ private bool parseArgs(string[] argv, ref Args args, out string error)
 {
     if (argv.length < 2)
     {
-        error = "Usage: session-router [--profiles DIR] resolve|repair-needed|submit ...";
+        error = "Usage: session-router [--profiles DIR] version|resolve|repair-needed|submit ...";
         return false;
     }
     size_t index = 1;
@@ -151,6 +158,8 @@ private bool parseArgs(string[] argv, ref Args args, out string error)
         if (!takeFlag(argv, index, args, error))
             return false;
     }
+    if (args.command == "version")
+        return true;
     if (args.command == "repair-needed")
         return require(args.app, "--app", error) && require(args.versionText, "--version", error)
             && require(args.profileVersion, "--profile-version", error)

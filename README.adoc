@@ -17,7 +17,14 @@ toc::[]
 
 == Install
 
-The command is a Dub executable. If DMD is not on `PATH`, pass `--compiler=ldc2`.
+From the registry:
+
+[source,shell]
+----
+dub fetch session-router
+----
+
+From a checkout, the command is a Dub executable. If DMD is not on `PATH`, pass `--compiler=ldc2`.
 
 [source,shell]
 ----
