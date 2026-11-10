@@ -1,0 +1,10 @@
+name: Encoding guard
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  encoding:
+    uses: dev-centr/agent-rules/.github/workflows/encoding-guard.yml@main

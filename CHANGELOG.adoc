@@ -1,0 +1,10 @@
+= Changelog
+
+== 2026-11-10
+
+A release-keyed catalog chooses the first door that can perform a harness operation.
+
+* Doors run in order: the harness MCP, a CLI wrapper, a hack profile, then a warned state-database write.
+* A version with no profile, including commits between releases, uses the newest older profile.
+* `session-router repair-needed` prints the fork and upstream pull request checklist.
+* The state-database writer refuses the live Cursor database unless `--worst-case` and `--i-understand` are both set, and it does not rewrite the conversation blob.

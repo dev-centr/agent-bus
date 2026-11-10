@@ -1,0 +1,22 @@
+{
+  "app": "cursor",
+  "version": "3.29.15",
+  "operations": {
+    "prompt-existing-desktop-chat": {
+      "mcp": null,
+      "cli": null,
+      "hack": null,
+      "worst_case": "state-db",
+      "stores": {
+        "desktop": "composerHeaders in the Cursor global state database",
+        "cli": "agent --resume chat id, a different store from desktop composers"
+      }
+    },
+    "resume-cli-session": {
+      "mcp": null,
+      "cli": ["agent", "--resume", "{chatId}"],
+      "hack": null,
+      "worst_case": null
+    }
+  }
+}
