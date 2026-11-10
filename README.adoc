@@ -17,11 +17,11 @@ toc::[]
 
 == Install
 
-The package needs Python 3.11 or newer.
+The command is a Dub executable. If DMD is not on `PATH`, pass `--compiler=ldc2`.
 
 [source,shell]
 ----
-python -m pip install -e .
+dub build --compiler=ldc2
 ----
 
 == Use
@@ -30,14 +30,14 @@ Resolve the door for a Cursor release. A version that has no profile uses the ne
 
 [source,shell]
 ----
-python -m session_router resolve --app cursor --version 3.29.15 --operation prompt-existing-desktop-chat
+dub run --compiler=ldc2 -- resolve --app cursor --version 3.29.15 --operation prompt-existing-desktop-chat
 ----
 
 Resume of a CLI session stops at the CLI door:
 
 [source,shell]
 ----
-python -m session_router resolve --app cursor --version 3.29.15 --operation resume-cli-session
+dub run --compiler=ldc2 -- resolve --app cursor --version 3.29.15 --operation resume-cli-session
 ----
 
 The state-database writer is the last door. It refuses a live Cursor database unless you pass both `--worst-case` and `--i-understand`. It inserts a user bubble and leaves the conversation blob unchanged, so it does not start a generation.
@@ -48,8 +48,10 @@ Add `profiles/<app>/<version>.json` with `mcp`, `cli`, `hack`, and `worst_case` 
 
 == Built with
 
-* Python 3.11, standard library only
-* SQLite, for the last-resort composer write
+Runtime::
+* https://dlang.org/[D] and https://dub.pm/[Dub]
+* https://github.com/ldc-developers/ldc[LDC] when DMD is not installed
+* https://github.com/dlang-community/d2sqlite3[d2sqlite3] and the SQLite library it ships, for the last-resort composer write
 
 == Changelog
 

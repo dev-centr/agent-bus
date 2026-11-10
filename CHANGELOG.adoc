@@ -1,6 +1,16 @@
 = Changelog
+:toclevels: 3
 
 == 2026-11-10
+
+=== D catalog command
+
+The catalog command is a D program. `dub run --compiler=ldc2` replaces the Python package.
+
+* Profiles, version inheritance, and the state-database refusal stay the same.
+* Windows builds copy the SQLite library shipped with `d2sqlite3`.
+
+=== Release-keyed doors
 
 A release-keyed catalog chooses the first door that can perform a harness operation.
 
