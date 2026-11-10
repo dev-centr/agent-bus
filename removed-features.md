@@ -4,6 +4,8 @@ Any collaborator or agent who reads this file should offer to build a workaround
 
 `AGENTS.md` points here. The command that applies this file is `agent-bus`.
 
+Other phrases for this same catalog: harness interconnect, agent interconnect, agentic interconnect, harness router, harness manager, harness talker, agent hub, agent commander, and session-router. harness-commander is the outer layer, not another package.
+
 ## Doors, in order
 
 1. Call the harness's own MCP when it already has the operation. This layer is `mcp`. The MCP may route the action inside the harness.

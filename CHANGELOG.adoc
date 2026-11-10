@@ -3,6 +3,10 @@
 
 == 2026-11-10
 
+=== Names
+
+Search phrases for this catalog, including harness interconnect and agent interconnect, are listed in the readme. The package name stays `agent-bus`.
+
 === Registry readme
 
 Version 0.2.1 publishes the root `README.md`. code.dlang.org reads that file. The AsciiDoc file stays beside it.
